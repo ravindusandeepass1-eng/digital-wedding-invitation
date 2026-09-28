@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wedding Invitation Order Form</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="order-container">
+
+        <h1>Wedding Invitation Order Form</h1>
+
+        <p>Please enter your wedding details below.</p>
+
+        <form id="customerForm">
+
+            <h2>Couple Details</h2>
+
+            <label>Groom Name</label>
+            <input type="text" id="groomName" required>
+
+            <label>Bride Name</label>
+            <input type="text" id="brideName" required>
+
+
+            <h2>Wedding Details</h2>
+
+            <label>Wedding Date</label>
+            <input type="date" id="weddingDate" required>
+
+            <label>Wedding Time</label>
+            <input type="time" id="weddingTime" required>
+
+            <label>Venue</label>
+            <input type="text" id="venue" required>
+
+            <label>City</label>
+            <input type="text" id="city" required>
+
+            <label>Google Maps Link</label>
+            <input type="url" id="mapLink">
+
+
+            <h2>Contact Details</h2>
+
+            <label>WhatsApp Number</label>
+            <input type="tel" id="whatsapp" placeholder="0771234567" required>
+
+
+            <h2>Additional Message</h2>
+
+            <label>Special Message</label>
+            <textarea id="message" rows="5"
+                placeholder="Example: Together with their families..."></textarea>
+
+
+            <button type="submit">
+                Submit Details
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        document.getElementById("customerForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const groom = document.getElementById("groomName").value;
+            const bride = document.getElementById("brideName").value;
+            const date = document.getElementById("weddingDate").value;
+            const time = document.getElementById("weddingTime").value;
+            const venue = document.getElementById("venue").value;
+            const city = document.getElementById("city").value;
+            const mapLink = document.getElementById("mapLink").value;
+            const whatsapp = document.getElementById("whatsapp").value;
+            const message = document.getElementById("message").value;
+
+            const whatsappMessage =
+`Wedding Invitation Details
+
+Groom: ${groom}
+Bride: ${bride}
+
+Date: ${date}
+Time: ${time}
+
+Venue: ${venue}
+City: ${city}
+
+Google Maps:
+${mapLink}
+
+WhatsApp:
+${whatsapp}
+
+Special Message:
+${message}`;
+
+            const businessWhatsApp = "94773297915";
+
+            const url =
+                "https://wa.me/" +
+                businessWhatsApp +
+                "?text=" +
+                encodeURIComponent(whatsappMessage);
+
+            window.open(url, "_blank");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
