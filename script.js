@@ -294,56 +294,67 @@ function startInvitation() {
 // RSVP FORM
 // ========================================
 
-const rsvpForm =
-    document.getElementById("rsvpForm");
+// ========================================
+// RSVP FORM - GOOGLE SHEETS
+// ========================================
+
+const rsvpForm = document.getElementById("rsvpForm");
+
+const googleScriptURL =
+    "https://script.google.com/macros/s/AKfycbxFebDl_6fWPyjxat9cGzo1eEjvSD7qipmdPta98lx22QjGp7l7DCJjNJh-BubXqK4bog/exec";
 
 
-rsvpForm.addEventListener(
-    "submit",
-    function (event) {
+rsvpForm.addEventListener("submit", async function (event) {
 
-        event.preventDefault();
+    event.preventDefault();
 
+    const name =
+        document.getElementById("guestName").value;
 
-        const name =
-            document.getElementById("guestName").value;
+    const phone =
+        document.getElementById("guestPhone").value;
 
+    const attendance =
+        document.getElementById("attendance").value;
 
-        const phone =
-            document.getElementById("guestPhone").value;
-
-
-        const attendance =
-            document.getElementById("attendance").value;
+    const guestCount =
+        document.getElementById("guestCount").value;
 
 
-        const guestCount =
-            document.getElementById("guestCount").value;
+    const rsvpData = {
+        name: name,
+        phone: phone,
+        attendance: attendance,
+        guestCount: guestCount
+    };
 
 
-        const message =
-`Hello ${weddingDetails.groom} & ${weddingDetails.bride},
+    try {
 
-Name: ${name}
-Phone: ${phone}
-Attendance: ${attendance}
-Number of Guests: ${guestCount}
-
-Thank you.`;
-
-
-        const whatsappURL =
-            `https://wa.me/${weddingDetails.whatsapp}?text=${encodeURIComponent(message)}`;
+        await fetch(googleScriptURL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: JSON.stringify(rsvpData)
+        });
 
 
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
+        alert("Thank you! Your RSVP has been submitted ❤️");
+
+        rsvpForm.reset();
+
+
+    } catch (error) {
+
+        console.error("RSVP Error:", error);
+
+        alert("Sorry, something went wrong. Please try again.");
 
     }
-);
 
+});
 
 // ========================================
 // SHARE INVITATION
