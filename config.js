@@ -1,7 +1,7 @@
 const weddingDetails = {
 
     groom: "Ravindu",
-    bride: "Amaya",
+    bride: "Achini",
 
     date: "20 December 2026",
     time: "6:30 PM",
