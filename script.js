@@ -322,6 +322,16 @@ function toggleMusic() {
 // ========================================
 
 function startInvitation() {
+    // START WEDDING MUSIC
+    if (weddingMusic) {
+        weddingMusic.volume = 0.5;
+
+        weddingMusic.play()
+            .then(updateMusicText)
+            .catch(error => {
+                console.log("Music blocked:", error);
+            });
+    }
 
     const openingScreen =
         document.getElementById("openingScreen");
