@@ -3,6 +3,13 @@ const weddingDetails = {
     groom: "Ravindu",
     bride: "Achini",
 
+    groomFather: "Mr. Sunil Perera",
+    groomMother: "Mrs. Chandrika Perera",
+
+    brideFather: "Mr. Anura Silva",
+    brideMother: "Mrs. Kumari Silva",
+
+    day: "Sunday",
     date: "20 December 2026",
     time: "6:30 PM",
 
