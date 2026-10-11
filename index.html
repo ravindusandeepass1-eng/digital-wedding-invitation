@@ -1,120 +1,102 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta property="og:title"
-      content="Kasun & Hiruni Wedding Invitation">
-
-<meta property="og:description"
-      content="You are warmly invited to celebrate our special day.">
-
-<meta property="og:image"
-      content="images/couple.jpg">
-
-<meta property="og:type"
-      content="website">
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <meta property="og:title" content="Ravindu & Achini Wedding Invitation">
+
+    <meta property="og:description" content="You are warmly invited to celebrate our special day.">
+
+    <meta property="og:image" content="images/couple.jpg">
+
+    <meta property="og:type" content="website">
+
+
 
     <title>Wedding Invitation</title>
+
+
 
     <link rel="stylesheet" href="style.css">
 
 
-    <!-- Google Fonts -->
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
 
+
 <body id="weddingBody">
-<div class="theme-selector">
 
-    <button onclick="changeTheme('elegant')">
-        🤍 Elegant
-    </button>
 
-    <button onclick="changeTheme('romantic')">
-        🌸 Romantic
-    </button>
-
-    <button onclick="changeTheme('botanical')">
-        🌿 Botanical
-    </button>
-
-    <button onclick="changeTheme('luxury')">
-        🖤 Luxury
-    </button>
-
-</div>
 
 <!-- =====================================
+
      OPENING SCREEN
+
 ===================================== -->
 
-<div class="opening-screen"
-     id="openingScreen">
+<div class="opening-screen" id="openingScreen">
 
 
-    <div class="floating-hearts">
+
+    <div class="floating-hearts" aria-hidden="true">
 
         <span>♡</span>
+
         <span>♡</span>
+
         <span>♡</span>
+
         <span>♡</span>
+
         <span>♡</span>
 
     </div>
 
 
+
     <div class="opening-content">
 
+        <div class="flower flower-top">❀</div>
 
-        <div class="flower flower-top">
-            ❀
-        </div>
-
-
-        <div class="flower flower-bottom">
-            ❀
-        </div>
+        <div class="flower flower-bottom">❀</div>
 
 
-        <p class="opening-small">
-            TOGETHER WITH THEIR FAMILIES
-        </p>
+
+        <p class="opening-small">TOGETHER WITH THEIR FAMILIES</p>
 
 
-        <h1 id="openingCoupleNames">
-        </h1>
+
+        <h1 id="openingCoupleNames"></h1>
 
 
-        <p class="opening-date"
-           id="openingWeddingDate">
-        </p>
+
+        <p class="opening-date" id="openingWeddingDate"></p>
+
 
 
         <div class="opening-line"></div>
 
 
-        <button class="open-invitation"
-                onclick="startInvitation()">
+
+        <button class="open-invitation" type="button" onclick="startInvitation()">
 
             OPEN INVITATION
 
         </button>
-
 
     </div>
 
@@ -122,113 +104,308 @@
 
 
 
-<!-- =====================================
-     MUSIC
-===================================== -->
-
-<audio id="weddingMusic"
-       loop>
-
-    <source src="music/wedding.mpeg"
-            type="audio/mpeg">
-
-</audio>
-
-
-<button class="music-button"
-        onclick="toggleMusic()">
-
-    🎵
-    <span id="musicText">
-        Play Music
-    </span>
-
-</button>
-
 
 
 <!-- =====================================
-     MAIN CONTENT
+
+     CINEMATIC VIDEO INTRO
+
 ===================================== -->
 
-<main class="hero">
+<div id="cinematicIntro" class="cinematic-intro" aria-hidden="true">
 
 
-    <!-- HERO -->
 
-    <div class="overlay">
+    <video id="introVideo" playsinline muted preload="auto">
 
+        <source src="video/intro.mp4" type="video/mp4">
 
-        <p class="small-text">
-            TOGETHER WITH THEIR FAMILIES
-        </p>
+    </video>
 
 
-        <h1 id="coupleNames">
-        </h1>
+
+    <div class="cinematic-shade"></div>
 
 
-        <div class="line"></div>
 
+    <div class="petal-layer" aria-hidden="true">
 
-        <p class="invite-text">
+        <span>🌸</span><span>🌸</span><span>🌸</span><span>🌸</span>
 
-            Request the pleasure of your company
-            at their wedding celebration
+        <span>🌸</span><span>🌸</span><span>🌸</span><span>🌸</span>
 
-        </p>
-
-
-        <div class="couple-photo">
-
-            <img src="images/couple.jpg"
-                 alt="Wedding couple">
-
-        </div>
-
-
-        <h2 id="weddingDate">
-        </h2>
-
-
-        <p class="time"
-           id="weddingTime">
-        </p>
-
-
-        <button onclick="openInvitation()">
-
-            View Invitation
-
-        </button>
-
+        <span>🌸</span><span>🌸</span><span>🌸</span><span>🌸</span>
 
     </div>
 
 
 
+    <div class="cinematic-copy">
+
+        <p>THE WEDDING OF</p>
+
+        <h1 id="cinematicNames"></h1>
+
+        <span id="cinematicDate"></span>
+
+    </div>
+
+
+
+    <button id="skipIntro" class="skip-intro" type="button" onclick="finishCinematicIntro()">
+
+        SKIP
+
+    </button>
+
+</div>
+
+
+
+
+
 <!-- =====================================
-     WEDDING DETAILS
+
+     MUSIC
+
 ===================================== -->
 
-<section class="details"
-         id="invitation">
+<audio id="weddingMusic" loop>
+
+    <source src="music/wedding.mp3" type="audio/mpeg">
+
+</audio>
 
 
-    <p class="section-label">
-        THE CELEBRATION
-    </p>
+
+<button class="music-button" type="button" onclick="toggleMusic()" aria-label="Toggle wedding music">
+
+    🎵&#x20;
+
+</button>
 
 
-    <h2>
-        Our Wedding Day
-    </h2>
+
+
+
+<main>
+
+
+
+<!-- =====================================
+
+     PREMIUM HERO
+
+===================================== -->
+
+<section class="hero premium-wedding-hero" id="invitation">
+
+
+
+    <div class="premium-hero">
+
+
+
+        <div class="hero-blessing">
+
+            <p class="sinhala-blessing">ශ්‍රී සුභ මංගලම්</p>
+
+            <p class="english-blessing">SRI SUBA MANGALAM</p>
+
+        </div>
+
+
+
+        <div class="hero-ornament" aria-hidden="true">
+
+            <span></span>
+
+            <b>◆</b>
+
+            <span></span>
+
+        </div>
+
+
+
+        <p class="hero-small-title">THE WEDDING OF</p>
+
+
+
+        <h1 id="coupleNames"></h1>
+
+
+
+        <div class="hero-parents">
+
+
+
+            <div class="hero-parent">
+
+                <p class="parent-title">SON OF</p>
+
+                <p id="heroGroomFather"></p>
+
+                <span class="parent-and">&</span>
+
+                <p id="heroGroomMother"></p>
+
+            </div>
+
+
+
+            <div class="parents-middle-line" aria-hidden="true"></div>
+
+
+
+            <div class="hero-parent">
+
+                <p class="parent-title">DAUGHTER OF</p>
+
+                <p id="heroBrideFather"></p>
+
+                <span class="parent-and">&</span>
+
+                <p id="heroBrideMother"></p>
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="hero-wedding-date">
+
+
+
+            <p id="heroWeddingDay" class="hero-day"></p>
+
+
+
+            <div class="premium-date-row">
+
+                <span class="date-decoration"></span>
+
+                <strong id="heroWeddingDate"></strong>
+
+                <span class="date-decoration"></span>
+
+            </div>
+
+
+
+            <p id="heroWeddingTime" class="hero-time"></p>
+
+
+
+        </div>
+
+
+
+        <div class="hero-couple-photo">
+
+            <img src="images/couple.jpg" alt="Wedding Couple">
+
+        </div>
+
+
+
+        <button class="view-invitation-btn" type="button" onclick="viewInvitationDetails()">
+
+            VIEW INVITATION
+
+        </button>
+
+
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- =====================================
+
+     SRI SUBA MANGALAM SECTION
+
+===================================== -->
+
+<section class="traditional-wedding-section" id="traditionalSection">
+
+
+
+    <div class="traditional-heading">
+
+        <p class="traditional-small">A BLESSED BEGINNING</p>
+
+        <h2>ශ්‍රී සුභ මංගලම්</h2>
+
+        <p class="traditional-english">SRI SUBA MANGALAM</p>
+
+        <span class="traditional-diamond">◆</span>
+
+    </div>
+    <div class="traditional-image-wrapper">
+        <img src="images/suba-couple.jpg" alt="Wedding Couple" class="traditional-couple-image">
+    </div>
+
+
+
+    <div class="traditional-details">
+
+        <p class="traditional-small">THE WEDDING OF</p>
+
+        <h2 id="traditionalNames"></h2>
+
+        <div class="traditional-line"></div>
+
+        <p id="traditionalDate" class="traditional-date"></p>
+
+
+
+        <p class="traditional-message">
+
+            Together with their families, request the pleasure of your company
+
+            as they celebrate their marriage.
+
+        </p>
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+<!-- =====================================
+
+     WEDDING DETAILS
+
+===================================== -->
+
+<section class="details" id="weddingDetailsSection">
+
+
+
+    <p class="section-label">THE CELEBRATION</p>
+
+
+
+    <h2>Our Wedding Day</h2>
+
 
 
     <p class="details-text">
 
-        We are delighted to invite you
-        to celebrate this special day with us.
+        We are delighted to invite you to celebrate this special day with us.
 
     </p>
 
@@ -237,120 +414,50 @@
     <div class="event">
 
 
-        <!-- CEREMONY -->
 
         <div class="event-box">
 
+            <h3>Ceremony</h3>
 
-            <h3>
-                Ceremony
-            </h3>
+            <p id="ceremonyTime"></p>
 
-
-            <p id="ceremonyTime">
-            </p>
-
-
-            <p id="ceremonyVenue">
-            </p>
-
+            <p id="ceremonyVenue"></p>
 
         </div>
 
 
 
-        <!-- RECEPTION -->
-
         <div class="event-box">
 
+            <h3>Reception</h3>
 
-            <h3>
-                Reception
-            </h3>
+            <p id="receptionTime"></p>
 
-
-            <p id="receptionTime">
-            </p>
-
-
-            <p id="receptionVenue">
-            </p>
-
+            <p id="receptionVenue"></p>
 
         </div>
+
 
 
     </div>
 
 
-
-    <!-- COUNTDOWN -->
 
     <div class="countdown">
 
+        <div><span id="days">00</span><small>Days</small></div>
 
-        <div>
+        <div><span id="hours">00</span><small>Hours</small></div>
 
-            <span id="days">
-                00
-            </span>
+        <div><span id="minutes">00</span><small>Minutes</small></div>
 
-            <small>
-                Days
-            </small>
-
-        </div>
-
-
-        <div>
-
-            <span id="hours">
-                00
-            </span>
-
-            <small>
-                Hours
-            </small>
-
-        </div>
-
-
-        <div>
-
-            <span id="minutes">
-                00
-            </span>
-
-            <small>
-                Minutes
-            </small>
-
-        </div>
-
-
-        <div>
-
-            <span id="seconds">
-                00
-            </span>
-
-            <small>
-                Seconds
-            </small>
-
-        </div>
-
+        <div><span id="seconds">00</span><small>Seconds</small></div>
 
     </div>
 
 
 
-    <!-- GOOGLE MAPS -->
-
-    <a class="map-button"
-       id="mapLink"
-       href="#"
-       target="_blank">
+    <a class="map-button" id="mapLink" href="#" target="_blank" rel="noopener">
 
         📍 View Location
 
@@ -358,109 +465,96 @@
 
 
 
-    <!-- WHATSAPP RSVP -->
-
-    <a class="whatsapp-button"
-       id="whatsappRSVP"
-       href="#"
-       target="_blank">
+    <a class="whatsapp-button" id="whatsappRSVP" href="#" target="_blank" rel="noopener">
 
         💬 RSVP on WhatsApp
 
     </a>
 
 
+
 </section>
 
 
 
+
+
 <!-- =====================================
+
      GALLERY
+
 ===================================== -->
 
-<section class="gallery"
-         id="gallery">
+<section class="gallery" id="gallery">
 
 
-    <p class="section-label">
-        OUR MEMORIES
-    </p>
+
+    <p class="section-label">OUR MEMORIES</p>
 
 
-    <h2>
-        Beautiful Moments
-    </h2>
+
+    <h2>Beautiful Moments</h2>
+
 
 
     <p class="gallery-intro">
 
-        A few special moments from our
-        journey together.
+        A few special moments from our journey together.
 
     </p>
+
 
 
     <div class="gallery-grid">
 
 
-        <div class="gallery-item"
-             onclick="openLightbox(0)">
 
-            <img src="images/photo1.jpg"
-                 alt="Wedding photo"
-                 loading="lazy">
+        <div class="gallery-item" onclick="openLightbox(0)">
+
+            <img src="images/photo1.jpg" alt="Wedding photo" loading="lazy">
 
         </div>
 
 
-        <div class="gallery-item"
-             onclick="openLightbox(1)">
 
-            <img src="images/photo2.jpg"
-                 alt="Wedding photo"
-                 loading="lazy">
+        <div class="gallery-item" onclick="openLightbox(1)">
+
+            <img src="images/photo2.jpg" alt="Wedding photo" loading="lazy">
 
         </div>
 
 
-        <div class="gallery-item"
-             onclick="openLightbox(2)">
 
-            <img src="images/photo3.jpg"
-                 alt="Wedding photo"
-                 loading="lazy">
+        <div class="gallery-item" onclick="openLightbox(2)">
+
+            <img src="images/photo3.jpg" alt="Wedding photo" loading="lazy">
 
         </div>
 
 
-        <div class="gallery-item"
-             onclick="openLightbox(3)">
 
-            <img src="images/photo4.jpg"
-                 alt="Wedding photo"
-                 loading="lazy">
+        <div class="gallery-item" onclick="openLightbox(3)">
+
+            <img src="images/photo4.jpg" alt="Wedding photo" loading="lazy">
 
         </div>
 
 
-        <div class="gallery-item"
-             onclick="openLightbox(4)">
 
-            <img src="images/photo5.jpg"
-                 alt="Wedding photo"
-                 loading="lazy">
+        <div class="gallery-item" onclick="openLightbox(4)">
+
+            <img src="images/photo5.jpg" alt="Wedding photo" loading="lazy">
 
         </div>
 
 
-        <div class="gallery-item"
-             onclick="openLightbox(5)">
 
-            <img src="images/photo6.jpg"
-                 alt="Wedding photo"
-                 loading="lazy">
+        <div class="gallery-item" onclick="openLightbox(5)">
+
+            <img src="images/photo6.jpg" alt="Wedding photo" loading="lazy">
 
         </div>
+
 
 
     </div>
@@ -469,207 +563,204 @@
 
 
 
+
+
 <!-- =====================================
+
      RSVP
+
 ===================================== -->
 
-<section class="rsvp"
-         id="rsvp">
+<section class="rsvp" id="rsvp">
 
 
-    <p class="section-label">
-        KINDLY RESPOND
-    </p>
+
+    <p class="section-label">KINDLY RESPOND</p>
 
 
-    <h2>
-        Will You Join Us?
-    </h2>
+
+    <h2>Will You Join Us?</h2>
+
 
 
     <p class="rsvp-intro">
 
-        We would love to celebrate
-        this special day with you.
+        We would love to celebrate this special day with you.
 
     </p>
+
 
 
     <form id="rsvpForm">
 
 
-        <input type="text"
-               id="guestName"
-               placeholder="Your Name"
-               required>
+
+        <input type="text" id="guestName" placeholder="Your Name" required>
 
 
-        <input type="tel"
-               id="guestPhone"
-               placeholder="Phone Number"
-               required>
+
+        <input type="tel" id="guestPhone" placeholder="Phone Number" required>
 
 
-        <select id="attendance"
-                required>
 
-            <option value="">
-                Will you attend?
-            </option>
+        <select id="attendance" required>
 
-            <option value="Yes, I will attend">
-                Yes, I will attend ❤️
-            </option>
+            <option value="">Will you attend?</option>
 
-            <option value="Sorry, I cannot attend">
-                Sorry, I cannot attend
-            </option>
+            <option value="Yes, I will attend">Yes, I will attend ❤️</option>
+
+            <option value="Sorry, I cannot attend">Sorry, I cannot attend</option>
 
         </select>
 
 
-        <input type="number"
-               id="guestCount"
-               min="1"
-               max="10"
-               placeholder="Number of Guests"
-               required>
+
+        <input
+
+            type="number"
+
+            id="guestCount"
+
+            min="1"
+
+            max="10"
+
+            placeholder="Number of Guests"
+
+            required
+
+        >
 
 
-        <button type="submit">
-            Submit RSVP
-        </button>
+
+        <button type="submit">Submit RSVP</button>
+
 
 
     </form>
 
-
 </section>
+
 
 
 </main>
 
 
 
+
+
 <!-- =====================================
+
      PHOTO LIGHTBOX
+
 ===================================== -->
 
-<div class="lightbox"
-     id="lightbox">
+<div class="lightbox" id="lightbox">
 
 
-    <button class="close-btn"
-            onclick="closeLightbox()">
 
-        ×
-
-    </button>
+    <button class="close-btn" type="button" onclick="closeLightbox()">×</button>
 
 
-    <button class="prev-btn"
-            onclick="changePhoto(-1)">
 
-        ‹
-
-    </button>
+    <button class="prev-btn" type="button" onclick="changePhoto(-1)">‹</button>
 
 
-    <img id="lightboxImage"
-         src=""
-         alt="Wedding photo">
+
+    <img id="lightboxImage" src="" alt="Wedding photo">
 
 
-    <button class="next-btn"
-            onclick="changePhoto(1)">
 
-        ›
+    <button class="next-btn" type="button" onclick="changePhoto(1)">›</button>
 
-    </button>
 
 
 </div>
 
 
 
+
+
 <!-- =====================================
+
      FOOTER
+
 ===================================== -->
 
 <footer class="footer">
 
 
+
     <div class="footer-content">
 
 
-        <p class="footer-small">
-            WITH LOVE
-        </p>
+
+        <p class="footer-small">WITH LOVE</p>
 
 
-        <h2 id="footerCoupleNames">
-        </h2>
+
+        <h2 id="footerCoupleNames"></h2>
 
 
-        <p class="footer-date"
-           id="footerWeddingDate">
-        </p>
+
+        <p class="footer-date" id="footerWeddingDate"></p>
+
 
 
         <div class="footer-line"></div>
 
 
+
         <p class="footer-message">
 
-            We can't wait to celebrate
-            this special day with you. ❤️
+            We can't wait to celebrate this special day with you. ❤️
 
         </p>
+
 
 
         <div class="footer-buttons">
 
 
-            <button onclick="shareInvitation()">
+
+            <button type="button" onclick="shareInvitation()">
 
                 📤 Share Invitation
 
             </button>
 
 
-            <a id="contactWhatsApp"
-               href="#"
-               target="_blank">
+
+            <a id="contactWhatsApp" href="#" target="_blank" rel="noopener">
 
                 💬 Contact Us
 
             </a>
 
 
+
         </div>
 
 
-        <p class="copyright">
 
-            Digital Wedding Invitation
+        <p class="copyright">Digital Wedding Invitation</p>
 
-        </p>
 
 
     </div>
+
 
 
 </footer>
 
 
 
-<!-- =====================================
-     JAVASCRIPT
-===================================== -->
+
 
 <script src="config.js"></script>
 
 <script src="script.js"></script>
+
 
 
 </body>
