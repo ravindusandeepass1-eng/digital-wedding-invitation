@@ -20,7 +20,7 @@
 
 
 
-    <title>Wedding Invitation</title>
+    <title>Ravindu &amp; Achini | Wedding Invitation</title>
 
 
 
@@ -40,135 +40,23 @@
 
 <body id="weddingBody">
 
-
-
-<!-- =====================================
-
-     OPENING SCREEN
-
-===================================== -->
-
-<div class="opening-screen" id="openingScreen">
-
-
-
-    <div class="floating-hearts" aria-hidden="true">
-
-        <span>♡</span>
-
-        <span>♡</span>
-
-        <span>♡</span>
-
-        <span>♡</span>
-
-        <span>♡</span>
-
+<!-- FIRST PAGE: SPLIT PHOTO + NAMES COVER -->
+<div class="invitation-gate" id="invitationGate">
+    <div class="gate-photo-panel" aria-hidden="true">
+        <img src="images/couple.jpg" alt="">
     </div>
-
-
-
-    <div class="opening-content">
-
-        <div class="flower flower-top">❀</div>
-
-        <div class="flower flower-bottom">❀</div>
-
-
-
-        <p class="opening-small">TOGETHER WITH THEIR FAMILIES</p>
-
-
-
-        <h1 id="openingCoupleNames"></h1>
-
-
-
-        <p class="opening-date" id="openingWeddingDate"></p>
-
-
-
-        <div class="opening-line"></div>
-
-
-
-        <button class="open-invitation" type="button" onclick="startInvitation()">
-
-            OPEN INVITATION
-
-        </button>
-
+    <div class="gate-name-panel">
+        <p class="gate-kicker">TOGETHER WITH THEIR FAMILIES</p>
+        <div class="gate-couple-names" id="gateCoupleNames">Ravindu <span>&</span> Achini</div>
+        <p class="gate-date" id="gateWeddingDate">20 DECEMBER 2026</p>
     </div>
-
-</div>
-
-
-
-
-
-<!-- =====================================
-
-     CINEMATIC VIDEO INTRO
-
-===================================== -->
-
-<div id="cinematicIntro" class="cinematic-intro" aria-hidden="true">
-
-
-
-    <video id="introVideo" playsinline muted preload="auto">
-
-        <source src="video/intro.mp4" type="video/mp4">
-
-    </video>
-
-
-
-    <div class="cinematic-shade"></div>
-
-
-
-    <div class="petal-layer" aria-hidden="true">
-
-        <span>🌸</span><span>🌸</span><span>🌸</span><span>🌸</span>
-
-        <span>🌸</span><span>🌸</span><span>🌸</span><span>🌸</span>
-
-        <span>🌸</span><span>🌸</span><span>🌸</span><span>🌸</span>
-
-    </div>
-
-
-
-    <div class="cinematic-copy">
-
-        <p>THE WEDDING OF</p>
-
-        <h1 id="cinematicNames"></h1>
-
-        <span id="cinematicDate"></span>
-
-    </div>
-
-
-
-    <button id="skipIntro" class="skip-intro" type="button" onclick="finishCinematicIntro()">
-
-        SKIP
-
+    <div class="gate-divider" aria-hidden="true"></div>
+    <button class="gate-open-button" type="button" onclick="startInvitation()" aria-label="Open wedding invitation" title="Open wedding invitation">
+        <span id="gateInitials">R <i>&</i> A</span>
     </button>
-
 </div>
 
-
-
-
-
-<!-- =====================================
-
-     MUSIC
-
-===================================== -->
+<!-- MUSIC -->
 
 <audio id="weddingMusic" loop>
 
@@ -178,10 +66,8 @@
 
 
 
-<button class="music-button" type="button" onclick="toggleMusic()" aria-label="Toggle wedding music">
-
-    🎵&#x20;
-
+<button class="music-button" id="musicButton" type="button" onclick="toggleMusic()" aria-label="Pause wedding music" title="Pause music" hidden>
+    <span id="musicButtonIcon" aria-hidden="true">♫</span>
 </button>
 
 
@@ -189,143 +75,6 @@
 
 
 <main>
-
-
-
-<!-- =====================================
-
-     PREMIUM HERO
-
-===================================== -->
-
-<section class="hero premium-wedding-hero" id="invitation">
-
-
-
-    <div class="premium-hero">
-
-
-
-        <div class="hero-blessing">
-
-            <p class="sinhala-blessing">ශ්‍රී සුභ මංගලම්</p>
-
-            <p class="english-blessing">SRI SUBA MANGALAM</p>
-
-        </div>
-
-
-
-        <div class="hero-ornament" aria-hidden="true">
-
-            <span></span>
-
-            <b>◆</b>
-
-            <span></span>
-
-        </div>
-
-
-
-        <p class="hero-small-title">THE WEDDING OF</p>
-
-
-
-        <h1 id="coupleNames"></h1>
-
-
-
-        <div class="hero-parents">
-
-
-
-            <div class="hero-parent">
-
-                <p class="parent-title">SON OF</p>
-
-                <p id="heroGroomFather"></p>
-
-                <span class="parent-and">&</span>
-
-                <p id="heroGroomMother"></p>
-
-            </div>
-
-
-
-            <div class="parents-middle-line" aria-hidden="true"></div>
-
-
-
-            <div class="hero-parent">
-
-                <p class="parent-title">DAUGHTER OF</p>
-
-                <p id="heroBrideFather"></p>
-
-                <span class="parent-and">&</span>
-
-                <p id="heroBrideMother"></p>
-
-            </div>
-
-
-
-        </div>
-
-
-
-        <div class="hero-wedding-date">
-
-
-
-            <p id="heroWeddingDay" class="hero-day"></p>
-
-
-
-            <div class="premium-date-row">
-
-                <span class="date-decoration"></span>
-
-                <strong id="heroWeddingDate"></strong>
-
-                <span class="date-decoration"></span>
-
-            </div>
-
-
-
-            <p id="heroWeddingTime" class="hero-time"></p>
-
-
-
-        </div>
-
-
-
-        <div class="hero-couple-photo">
-
-            <img src="images/couple.jpg" alt="Wedding Couple">
-
-        </div>
-
-
-
-        <button class="view-invitation-btn" type="button" onclick="viewInvitationDetails()">
-
-            VIEW INVITATION
-
-        </button>
-
-
-
-    </div>
-
-</section>
-
-
-
 
 
 <!-- =====================================
@@ -365,7 +114,11 @@
 
         <p id="traditionalDate" class="traditional-date"></p>
 
-
+        <div class="traditional-parents">
+            <div><span>SON OF</span><p id="heroGroomFather"></p><p id="heroGroomMother"></p></div>
+            <div class="parents-divider">&</div>
+            <div><span>DAUGHTER OF</span><p id="heroBrideFather"></p><p id="heroBrideMother"></p></div>
+        </div>
 
         <p class="traditional-message">
 
@@ -443,6 +196,11 @@
 
 
 
+    <div class="countdown-heading">
+        <p class="section-label">COUNTING DOWN TO FOREVER</p>
+        <h2>The Countdown Begins</h2>
+    </div>
+
     <div class="countdown">
 
         <div><span id="days">00</span><small>Days</small></div>
@@ -476,90 +234,79 @@
 </section>
 
 
+<section class="timeline-section" id="timeline">
+    <p class="section-label">SAVE THE MOMENT</p>
+    <h2>Event Timeline</h2>
+    <p class="timeline-intro">We look forward to celebrating these special moments with you.</p>
+    <div class="timeline-list">
+        <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-card">
+                <span class="timeline-time" id="timelineCeremonyTime"></span>
+                <h3>Wedding Ceremony</h3>
+                <p id="timelineCeremonyVenue"></p>
+            </div>
+        </article>
+        <article class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-card">
+                <span class="timeline-time" id="timelineReceptionTime"></span>
+                <h3>Wedding Reception</h3>
+                <p id="timelineReceptionVenue"></p>
+            </div>
+        </article>
+    </div>
+    <a class="confirm-presence-btn" href="#rsvp">Confirm Presence</a>
+</section>
 
 
-
-<!-- =====================================
-
-     GALLERY
-
-===================================== -->
 
 <section class="gallery" id="gallery">
 
-
-
-    <p class="section-label">OUR MEMORIES</p>
-
-
-
-    <h2>Beautiful Moments</h2>
-
-
+    <p class="section-label">CAPTURED WITH LOVE</p>
+    <h2>Photo Shuffle</h2>
 
     <p class="gallery-intro">
-
         A few special moments from our journey together.
-
     </p>
 
+    <div class="coverflow-container">
 
+        <div class="coverflow" id="coverflow">
 
-    <div class="gallery-grid">
+            <div class="coverflow-item" onclick="openPhoto(0)">
+                <img src="images/photo1.jpg" alt="Wedding photo 1">
+            </div>
 
+            <div class="coverflow-item" onclick="openPhoto(1)">
+                <img src="images/photo2.jpg" alt="Wedding photo 2">
+            </div>
 
+            <div class="coverflow-item" onclick="openPhoto(2)">
+                <img src="images/photo3.jpg" alt="Wedding photo 3">
+            </div>
 
-        <div class="gallery-item" onclick="openLightbox(0)">
+            <div class="coverflow-item" onclick="openPhoto(3)">
+                <img src="images/photo4.jpg" alt="Wedding photo 4">
+            </div>
 
-            <img src="images/photo1.jpg" alt="Wedding photo" loading="lazy">
+            <div class="coverflow-item" onclick="openPhoto(4)">
+                <img src="images/photo5.jpg" alt="Wedding photo 5">
+            </div>
 
-        </div>
-
-
-
-        <div class="gallery-item" onclick="openLightbox(1)">
-
-            <img src="images/photo2.jpg" alt="Wedding photo" loading="lazy">
-
-        </div>
-
-
-
-        <div class="gallery-item" onclick="openLightbox(2)">
-
-            <img src="images/photo3.jpg" alt="Wedding photo" loading="lazy">
-
-        </div>
-
-
-
-        <div class="gallery-item" onclick="openLightbox(3)">
-
-            <img src="images/photo4.jpg" alt="Wedding photo" loading="lazy">
+            <div class="coverflow-item" onclick="openPhoto(5)">
+                <img src="images/photo6.jpg" alt="Wedding photo 6">
+            </div>
 
         </div>
 
-
-
-        <div class="gallery-item" onclick="openLightbox(4)">
-
-            <img src="images/photo5.jpg" alt="Wedding photo" loading="lazy">
-
-        </div>
-
-
-
-        <div class="gallery-item" onclick="openLightbox(5)">
-
-            <img src="images/photo6.jpg" alt="Wedding photo" loading="lazy">
-
-        </div>
-
-
+        <button class="coverflow-arrow prev" onclick="movePhoto(-1)">&#10094;</button>
+        <button class="coverflow-arrow next" onclick="movePhoto(1)">&#10095;</button>
 
     </div>
 
 </section>
+
 
 
 

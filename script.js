@@ -16,16 +16,18 @@ function setText(id, value) {
 // ========================================
 
 setText(
-    "openingCoupleNames",
-    `${weddingDetails.groom} & ${weddingDetails.bride}`
-);
-
-setText(
     "coupleNames",
     `${weddingDetails.groom} & ${weddingDetails.bride}`
 );
 
-setText("openingWeddingDate", weddingDetails.date);
+// First-page split cover names, date, and couple initials
+setText("gateCoupleNames", `${weddingDetails.groom} & ${weddingDetails.bride}`);
+setText("gateWeddingDate", weddingDetails.date.toUpperCase());
+setText("gateInitials", "");
+const gateInitials = document.getElementById("gateInitials");
+if (gateInitials) {
+    gateInitials.innerHTML = `${weddingDetails.groom.trim().charAt(0).toUpperCase()} <i>&</i> ${weddingDetails.bride.trim().charAt(0).toUpperCase()}`;
+}
 
 
 // HERO - PARENTS
@@ -40,15 +42,6 @@ setText("heroBrideMother", weddingDetails.brideMother);
 setText("heroWeddingDay", weddingDetails.day.toUpperCase());
 setText("heroWeddingDate", weddingDetails.date.toUpperCase());
 setText("heroWeddingTime", weddingDetails.time);
-
-
-// CINEMATIC INTRO
-setText(
-    "cinematicNames",
-    `${weddingDetails.groom} & ${weddingDetails.bride}`
-);
-
-setText("cinematicDate", weddingDetails.date);
 
 
 // TRADITIONAL SECTION
@@ -68,6 +61,12 @@ setText("ceremonyVenue", weddingDetails.ceremonyVenue);
 // RECEPTION
 setText("receptionTime", weddingDetails.receptionTime);
 setText("receptionVenue", weddingDetails.receptionVenue);
+
+// EVENT TIMELINE
+setText("timelineCeremonyTime", weddingDetails.ceremonyTime);
+setText("timelineCeremonyVenue", weddingDetails.ceremonyVenue);
+setText("timelineReceptionTime", weddingDetails.receptionTime);
+setText("timelineReceptionVenue", weddingDetails.receptionVenue);
 
 
 // FOOTER
@@ -111,356 +110,75 @@ if (contactWhatsApp) {
 
 
 // ========================================
-// VIEW INVITATION BUTTON
+// MUSIC CONTROLS
 // ========================================
-
-function viewInvitationDetails() {
-
-    const section =
-        document.getElementById("traditionalSection");
-
-    if (section) {
-        section.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    }
-}
-
-
-// ========================================
-// COUNTDOWN
-// ========================================
-
-const weddingDateTime = new Date(
-    `${weddingDetails.date} ${weddingDetails.time}`
-).getTime();
-
-
-function updateCountdown() {
-
-    const countdownElement =
-        document.querySelector(".countdown");
-
-    if (!countdownElement) {
-        return;
-    }
-
-    const now = new Date().getTime();
-
-    const distance =
-        weddingDateTime - now;
-
-
-    if (Number.isNaN(weddingDateTime)) {
-
-        countdownElement.innerHTML =
-            "Wedding date unavailable";
-
-        return;
-    }
-
-
-    if (distance < 0) {
-
-        countdownElement.innerHTML =
-            "The Wedding Day Has Arrived ❤️";
-
-        return;
-    }
-
-
-    const days = Math.floor(
-        distance / (1000 * 60 * 60 * 24)
-    );
-
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24))
-        / (1000 * 60 * 60)
-    );
-
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60))
-        / (1000 * 60)
-    );
-
-    const seconds = Math.floor(
-        (distance % (1000 * 60))
-        / 1000
-    );
-
-
-    setText("days", days);
-    setText("hours", hours);
-    setText("minutes", minutes);
-    setText("seconds", seconds);
-}
-
-
-updateCountdown();
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-
-// ========================================
-// PHOTO GALLERY
-// ========================================
-
-const photos = [
-    "images/photo1.jpg",
-    "images/photo2.jpg",
-    "images/photo3.jpg",
-    "images/photo4.jpg",
-    "images/photo5.jpg",
-    "images/photo6.jpg"
-];
-
-let currentPhoto = 0;
-
-
-function openLightbox(index) {
-
-    currentPhoto = index;
-
-    const image =
-        document.getElementById("lightboxImage");
-
-    const lightbox =
-        document.getElementById("lightbox");
-
-    if (image) {
-        image.src = photos[currentPhoto];
-    }
-
-    if (lightbox) {
-        lightbox.style.display = "flex";
-    }
-}
-
-
-function closeLightbox() {
-
-    const lightbox =
-        document.getElementById("lightbox");
-
-    if (lightbox) {
-        lightbox.style.display = "none";
-    }
-}
-
-
-function changePhoto(direction) {
-
-    currentPhoto += direction;
-
-    if (currentPhoto >= photos.length) {
-        currentPhoto = 0;
-    }
-
-    if (currentPhoto < 0) {
-        currentPhoto = photos.length - 1;
-    }
-
-    const image =
-        document.getElementById("lightboxImage");
-
-    if (image) {
-        image.src = photos[currentPhoto];
-    }
-}
-
-
-// ========================================
-// BACKGROUND MUSIC
-// ========================================
-
-const weddingMusic =
-    document.getElementById("weddingMusic");
-
-const musicText =
-    document.getElementById("musicText");
-
+const weddingMusic = document.getElementById("weddingMusic");
+const musicButton = document.getElementById("musicButton");
+const musicButtonIcon = document.getElementById("musicButtonIcon");
 
 function updateMusicText() {
+    if (!weddingMusic || !musicButton) return;
 
-    if (!musicText || !weddingMusic) {
-        return;
-    }
-
-    musicText.textContent =
-        weddingMusic.paused
-            ? "Play Music"
-            : "Pause Music";
+    const playing = !weddingMusic.paused;
+    musicButton.setAttribute("aria-label", playing ? "Pause wedding music" : "Play wedding music");
+    musicButton.title = playing ? "Pause music" : "Play music";
+    if (musicButtonIcon) musicButtonIcon.textContent = playing ? "♫" : "♪̸";
 }
 
-
 function toggleMusic() {
-
-    if (!weddingMusic) {
-        return;
-    }
+    if (!weddingMusic) return;
 
     if (weddingMusic.paused) {
-
-        weddingMusic.play()
-            .then(updateMusicText)
-            .catch(updateMusicText);
-
+        weddingMusic.play().then(updateMusicText).catch(updateMusicText);
     } else {
-
         weddingMusic.pause();
         updateMusicText();
     }
 }
 
+if (weddingMusic) {
+    weddingMusic.addEventListener("play", updateMusicText);
+    weddingMusic.addEventListener("pause", updateMusicText);
+    weddingMusic.addEventListener("ended", updateMusicText);
+}
 
 // ========================================
-// OPENING SCREEN + CINEMATIC INTRO
+// FIRST PAGE -> INVITATION COVER (NO CINEMATIC VIDEO)
 // ========================================
-
 function startInvitation() {
-    // START WEDDING MUSIC
+    const gate = document.getElementById("invitationGate");
+    if (gate) {
+    gate.classList.add("gate-closed");
+
+    setTimeout(() => {
+        gate.classList.add("gate-remove");
+    }, 1500);
+}
+
+    document.body.classList.add("invitation-opened");
+
+    if (musicButton) musicButton.hidden = false;
+
     if (weddingMusic) {
         weddingMusic.volume = 0.5;
-
-        weddingMusic.play()
-            .then(updateMusicText)
-            .catch(error => {
-                console.log("Music blocked:", error);
-            });
+        weddingMusic.play().then(updateMusicText).catch(updateMusicText);
     }
 
-    const openingScreen =
-        document.getElementById("openingScreen");
+    setTimeout(() => {
+    const subaSection = document.getElementById("traditionalSection");
 
-    const cinematicIntro =
-        document.getElementById("cinematicIntro");
-
-    const introVideo =
-        document.getElementById("introVideo");
-
-
-    if (openingScreen) {
-        openingScreen.classList.add("hide");
+    if (subaSection) {
+        subaSection.scrollIntoView({ behavior: "smooth" });
     }
+}, 1500);
+}
 
-
-    if (!cinematicIntro || !introVideo) {
-
-        finishCinematicIntro();
-        return;
-    }
-
-
-    cinematicIntro.classList.remove("closing");
-    cinematicIntro.classList.add("active");
-
-    cinematicIntro.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add(
-        "cinematic-playing"
-    );
-
-
-    introVideo.currentTime = 0;
-
-    introVideo.play().catch(function () {
-        finishCinematicIntro();
-    });
+function viewInvitationDetails() {
+    const section = document.getElementById("traditionalSection");
+    if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 
-function finishCinematicIntro() {
-
-    const cinematicIntro =
-        document.getElementById("cinematicIntro");
-
-    const introVideo =
-        document.getElementById("introVideo");
-
-
-    if (introVideo) {
-        introVideo.pause();
-    }
-
-
-    if (!cinematicIntro) {
-
-        document.body.classList.remove(
-            "cinematic-playing"
-        );
-
-        document.getElementById("invitation")
-            ?.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        return;
-    }
-
-
-    if (!cinematicIntro.classList.contains("active")) {
-        return;
-    }
-
-
-    cinematicIntro.classList.add("closing");
-
-
-    setTimeout(function () {
-
-        cinematicIntro.classList.remove(
-            "active",
-            "closing"
-        );
-
-        cinematicIntro.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        document.body.classList.remove(
-            "cinematic-playing"
-        );
-
-
-        if (weddingMusic) {
-
-            weddingMusic.play()
-                .then(updateMusicText)
-                .catch(updateMusicText);
-        }
-
-
-        document.getElementById("invitation")
-            ?.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-    }, 650);
-}
-
-
-const introVideo =
-    document.getElementById("introVideo");
-
-if (introVideo) {
-
-    introVideo.addEventListener(
-        "ended",
-        finishCinematicIntro
-    );
-}
-
-
-// ========================================
 // RSVP FORM - GOOGLE SHEETS
 // ========================================
 
@@ -589,3 +307,119 @@ if (weddingDetails.theme) {
         "theme-" + weddingDetails.theme
     );
 }
+
+/* Wedding Countdown */
+
+function startWeddingCountdown() {
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
+    if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+        return;
+    }
+
+    // Wedding date: 20 December 2026, 6:30 PM
+    const weddingDate = new Date("2026-12-20T18:30:00+05:30").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance <= 0) {
+            daysElement.textContent = "00";
+            hoursElement.textContent = "00";
+            minutesElement.textContent = "00";
+            secondsElement.textContent = "00";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        daysElement.textContent = String(days).padStart(2, "0");
+        hoursElement.textContent = String(hours).padStart(2, "0");
+        minutesElement.textContent = String(minutes).padStart(2, "0");
+        secondsElement.textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+
+startWeddingCountdown();
+
+
+
+/* 3D COVERFLOW GALLERY */
+
+const coverflowItems = document.querySelectorAll(".coverflow-item");
+let activePhoto = 0;
+
+function updateCoverflow() {
+    const total = coverflowItems.length;
+
+    coverflowItems.forEach((item, index) => {
+        let position = index - activePhoto;
+
+        if (position > total / 2) position -= total;
+        if (position < -total / 2) position += total;
+
+        const x = position * 145;
+        const scale = position === 0 ? 1 : 0.78;
+        const rotate = position * -12;
+        const opacity = Math.abs(position) > 2 ? 0 : 1;
+
+        item.style.transform =
+            `translate(calc(-50% + ${x}px), -50%) scale(${scale}) rotateY(${rotate}deg)`;
+
+        item.style.opacity = opacity;
+        item.style.zIndex = 10 - Math.abs(position);
+        item.style.pointerEvents = opacity === 0 ? "none" : "auto";
+
+        item.classList.toggle("active", position === 0);
+    });
+}
+
+function movePhoto(direction) {
+    activePhoto =
+        (activePhoto + direction + coverflowItems.length) %
+        coverflowItems.length;
+
+    updateCoverflow();
+}
+
+function openPhoto(index) {
+    activePhoto = index;
+    updateCoverflow();
+
+    // Open the existing lightbox
+    if (typeof openLightbox === "function") {
+        openLightbox(index);
+    }
+}
+
+let touchStartX = 0;
+
+const coverflowElement = document.getElementById("coverflow");
+
+if (coverflowElement) {
+    coverflowElement.addEventListener("touchstart", function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    coverflowElement.addEventListener("touchend", function(e) {
+        const touchEndX = e.changedTouches[0].screenX;
+        const difference = touchEndX - touchStartX;
+
+        if (Math.abs(difference) > 40) {
+            movePhoto(difference < 0 ? 1 : -1);
+        }
+    }, { passive: true });
+}
+
+updateCoverflow();
+
